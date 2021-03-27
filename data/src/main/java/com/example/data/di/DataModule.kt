@@ -2,8 +2,11 @@ package com.example.data.di
 
 import com.example.data.BuildConfig.BASE_URL
 import com.example.data.repository.RateRepositoryImpl
+import com.example.data.repository.TransactionRepositoryImpl
 import com.example.data.service.RatesService
+import com.example.data.service.TransactionService
 import com.example.domain.repository.RateRepository
+import com.example.domain.repository.TransactionRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -58,12 +61,23 @@ object DataModule {
     }
 
     @Provides
+    @Singleton
     fun provideRateService(@RetrofitClient retrofit: Retrofit): RatesService = retrofit.create(RatesService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTransacionService(@RetrofitClient retrofit: Retrofit): TransactionService = retrofit.create(TransactionService::class.java)
 
     @Provides
     @Singleton
     fun provideRateRepositoryImpl(ratesService: RatesService): RateRepository {
         return RateRepositoryImpl(ratesService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTransactionRepositoryImpl(transactionService: TransactionService): TransactionRepository {
+        return TransactionRepositoryImpl(transactionService)
     }
 
 }

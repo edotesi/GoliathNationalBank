@@ -16,20 +16,20 @@ class RateRepositoryImpl @Inject constructor(private val ratesService: RatesServ
     RateRepository {
     override fun getRates(): MutableLiveData<ArrayList<RateLocal>> {
         var rates = MutableLiveData<ArrayList<RateLocal>>()
-        ratesService.getRates().enqueue(object : Callback<List<RateResponse>> {
+        ratesService.getRates().enqueue(object : Callback<ArrayList<RateResponse>> {
+            override fun onFailure(call: Call<ArrayList<RateResponse>>, t: Throwable) {
+                Log.i("Error", t.message.toString())
+            }
+
             override fun onResponse(
-                call: Call<List<RateResponse>>,
-                response: Response<List<RateResponse>>
+                call: Call<ArrayList<RateResponse>>,
+                response: Response<ArrayList<RateResponse>>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let { list ->
-                        rates.value = rateResponseToRateLocal(list)
-                        Log.i("Prubea Repo", rates.value.toString())
+                        rates.postValue(rateResponseToRateLocal(list))
                     }
                 }
-            }
-
-            override fun onFailure(call: Call<List<RateResponse>>, t: Throwable) {
             }
         })
         return rates

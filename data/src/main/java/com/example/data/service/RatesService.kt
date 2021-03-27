@@ -8,6 +8,6 @@ import retrofit2.http.GET
 interface RatesService {
 
     @GET("rates.json")
-    fun getRates(): Call<List<RateResponse>>
+    fun getRates(): Call<ArrayList<RateResponse>>
 
 }

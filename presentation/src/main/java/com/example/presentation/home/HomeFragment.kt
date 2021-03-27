@@ -33,5 +33,8 @@ class HomeFragment : Fragment() {
         homeViewModel.ratesList.observe(this.viewLifecycleOwner, Observer {
             Log.i("Inf", it.toString()                                                                                                                                        )
         })
+        homeViewModel.transactionsList.observe(this.viewLifecycleOwner, Observer {
+            Log.i("Inf2", it.toString())
+        })
     }
 }

@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface TransactionService {
 
     @GET("transactions.json")
-    suspend fun getTransactions(): Call<List<TransactionResponse>>
+    fun getTransactions(): Call<ArrayList<TransactionResponse>>
 
 }
