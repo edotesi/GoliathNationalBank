@@ -5,12 +5,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.TransactionLocal
 import com.example.presentation.R
+import com.example.presentation.databinding.GlobalTransactionItemBinding
 
-class GlobalTransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class GlobalTransactionViewHolder(private val itemBinding: GlobalTransactionItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(transaction: TransactionLocal) {
-        itemView.findViewById<TextView>(R.id.tvTransactionName).text = transaction.sku
-        itemView.findViewById<TextView>(R.id.tvTransactionAmount).text = transaction.amount
+        itemBinding.tvTransactionName.text = transaction.sku
+        itemBinding.tvTransactionAmount.text = transaction.amount
     }
 
 }

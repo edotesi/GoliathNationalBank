@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.TransactionLocal
 import com.example.presentation.R
 import com.example.presentation.adapter.holder.GlobalTransactionViewHolder
+import com.example.presentation.databinding.GlobalTransactionItemBinding
 import javax.inject.Inject
 
 class GlobalTransactionsAdapter(private var transactionsList: ArrayList<TransactionLocal>) : RecyclerView.Adapter<GlobalTransactionViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GlobalTransactionViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.global_transaction_item, parent, false)
+        val view = GlobalTransactionItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GlobalTransactionViewHolder(view)
     }
 
