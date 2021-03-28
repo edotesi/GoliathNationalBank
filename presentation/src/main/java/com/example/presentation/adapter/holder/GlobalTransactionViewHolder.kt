@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.TransactionLocal
 import com.example.presentation.R
 import com.example.presentation.databinding.GlobalTransactionItemBinding
+import com.example.presentation.model.GlobalTransactionUIModel
 
 class GlobalTransactionViewHolder(private val itemBinding: GlobalTransactionItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
-    fun bind(transaction: TransactionLocal) {
-        itemBinding.tvTransactionName.text = transaction.sku
-        itemBinding.tvTransactionAmount.text = transaction.amount
+    fun bind(transaction: GlobalTransactionUIModel) {
+        itemBinding.tvTransactionName.text = transaction.name
+        itemBinding.tvTransactionAmount.text = transaction.amount.toString()
     }
 
 }

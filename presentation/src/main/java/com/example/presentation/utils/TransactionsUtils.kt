@@ -1,6 +1,5 @@
 package com.example.presentation.utils
 
-import android.provider.Settings
 import com.example.domain.model.TransactionLocal
 import com.example.presentation.model.GlobalTransactionUIModel
 import com.example.presentation.model.TransactionUIModel
@@ -11,9 +10,9 @@ fun getGlobalTransactionsAmount(transactions: ArrayList<TransactionLocal>): Arra
     var transactionsBySku: Map<String, List<TransactionLocal>> =
         transactions.groupBy(TransactionLocal::sku)
     transactionsBySku.entries.forEach { transactions ->
-        getGlobalTransactionsBySku(transactions.value, transactions.key)
+        transactionsAmountList.add(getGlobalTransactionsBySku(transactions.value, transactions.key))
     }
-    return null
+    return transactionsAmountList
 }
 
 
@@ -22,7 +21,18 @@ fun getGlobalTransactionsBySku(
     transactionName: String
 ): GlobalTransactionUIModel {
     var globalTransaction: GlobalTransactionUIModel =
-        GlobalTransactionUIModel(transactionName, 0L, "EUR", null)
+        GlobalTransactionUIModel(transactionName, 0f, "EUR", null)
+    var amount: Float = 0f
+    transactions.forEach { transaction ->
+        amount += transaction.amount
+        globalTransaction.transactions?.add(
+            TransactionUIModel(
+                transaction.amount,
+                transaction.currency
+            )
+        )
+    }
 
+    globalTransaction.amount = amount
     return globalTransaction
 }

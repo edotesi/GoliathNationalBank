@@ -7,9 +7,10 @@ import com.example.domain.model.TransactionLocal
 import com.example.presentation.R
 import com.example.presentation.adapter.holder.GlobalTransactionViewHolder
 import com.example.presentation.databinding.GlobalTransactionItemBinding
+import com.example.presentation.model.GlobalTransactionUIModel
 import javax.inject.Inject
 
-class GlobalTransactionsAdapter(private var transactionsList: ArrayList<TransactionLocal>) : RecyclerView.Adapter<GlobalTransactionViewHolder>() {
+class GlobalTransactionsAdapter(private var transactionsList: ArrayList<GlobalTransactionUIModel>) : RecyclerView.Adapter<GlobalTransactionViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GlobalTransactionViewHolder {

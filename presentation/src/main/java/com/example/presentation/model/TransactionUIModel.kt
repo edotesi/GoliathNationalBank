@@ -1,6 +1,6 @@
 package com.example.presentation.model
 
 data class TransactionUIModel(
-    var amount: Long,
+    var amount: Float,
     var currency: String
 )

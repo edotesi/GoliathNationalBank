@@ -4,7 +4,7 @@ import java.util.*
 
 data class GlobalTransactionUIModel(
     var name: String,
-    var amount: Long,
+    var amount: Float,
     var currency: String,
     var transactions: ArrayList<TransactionUIModel>?
 )
