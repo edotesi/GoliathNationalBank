@@ -1,8 +1,10 @@
 package com.example.presentation.utils
 
+import com.example.domain.model.RateLocal
 import com.example.domain.model.TransactionLocal
 import com.example.presentation.model.GlobalTransactionUIModel
-import com.example.presentation.model.TransactionUIModel
+import com.example.presentation.model.mapper.transactionLocalToTransactionUI
+import java.math.BigDecimal
 
 
 fun getGlobalTransactionsAmount(transactions: ArrayList<TransactionLocal>): ArrayList<GlobalTransactionUIModel> {
@@ -21,18 +23,23 @@ fun getGlobalTransactionsBySku(
     transactionName: String
 ): GlobalTransactionUIModel {
     var globalTransaction: GlobalTransactionUIModel =
-        GlobalTransactionUIModel(transactionName, 0f, "EUR", null)
-    var amount: Float = 0f
+        GlobalTransactionUIModel(transactionName, "", "EUR", null)
     transactions.forEach { transaction ->
-        amount += transaction.amount
         globalTransaction.transactions?.add(
-            TransactionUIModel(
-                transaction.amount,
-                transaction.currency
-            )
+            transactionLocalToTransactionUI(transaction)
         )
     }
-
-    globalTransaction.amount = amount
     return globalTransaction
+}
+
+fun currencyConverter(rates: ArrayList<RateLocal>, transaction: TransactionLocal, userCurrency: String) {
+    var amountConversion = BigDecimal.ZERO
+    var currentAmount = BigDecimal.ZERO
+
+
+
+    if (rates.find { it.to == userCurrency } != null) {
+        var rate = rates.find { it.from == transaction.currency && it.to == userCurrency}?.rate as BigDecimal
+        amountConversion = currentAmount.multiply(rate)
+    }
 }

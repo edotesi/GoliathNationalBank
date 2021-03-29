@@ -2,6 +2,6 @@ package com.example.domain.model
 
 data class TransactionLocal(
     val sku: String,
-    val amount: Float,
+    val amount: String,
     val currency: String
 )

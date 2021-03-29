@@ -11,8 +11,9 @@ import com.example.presentation.model.GlobalTransactionUIModel
 class GlobalTransactionViewHolder(private val itemBinding: GlobalTransactionItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(transaction: GlobalTransactionUIModel) {
-        itemBinding.tvTransactionName.text = transaction.name
-        itemBinding.tvTransactionAmount.text = transaction.amount.toString()
+        itemBinding.tvGlobalTransactionName.text = transaction.name
+        itemBinding.tvGlobalTransactionAmount.text = transaction.amount.toString()
+        itemBinding.tvGlobalTransactionAmountName.text = "€"
+        itemBinding.tvGlobalTransactionCurrency.text = "EUR"
     }
-
 }
