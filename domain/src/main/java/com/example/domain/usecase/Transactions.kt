@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class Transactions @Inject constructor(private val transactionRepository: TransactionRepository) {
 
-    fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>>{
+    suspend fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>>{
         return transactionRepository.getTransactions()
     }
 

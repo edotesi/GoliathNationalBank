@@ -12,8 +12,8 @@ class GlobalTransactionViewHolder(private val itemBinding: GlobalTransactionItem
 
     fun bind(transaction: GlobalTransactionUIModel) {
         itemBinding.tvGlobalTransactionName.text = transaction.name
-        itemBinding.tvGlobalTransactionAmount.text = transaction.amount.toString()
-        itemBinding.tvGlobalTransactionAmountName.text = "€"
-        itemBinding.tvGlobalTransactionCurrency.text = "EUR"
+        itemBinding.tvGlobalTransactionAmount.text = transaction.amount
+        itemBinding.tvGlobalTransactionAmountName.text = transaction.amount
+        itemBinding.tvGlobalTransactionCurrency.text = transaction.currency
     }
 }

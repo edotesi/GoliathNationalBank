@@ -21,7 +21,7 @@ fun transactionResponseToTransactionLocal(transactionResponseList: ArrayList<Tra
         transactionLocalList.add(
             TransactionLocal(
                 sku = transaction.sku,
-                amount = transaction.amount.toFloat(),
+                amount = transaction.amount,
                 currency = transaction.currency
             )
         )

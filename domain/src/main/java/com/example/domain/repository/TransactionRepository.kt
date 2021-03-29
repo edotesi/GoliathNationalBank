@@ -5,6 +5,6 @@ import com.example.domain.model.TransactionLocal
 
 interface TransactionRepository {
 
-    fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>>
+    suspend fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>>
 
 }

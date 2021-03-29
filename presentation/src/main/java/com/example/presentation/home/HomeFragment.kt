@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.adapter.GlobalTransactionsAdapter
 import com.example.presentation.databinding.FragmentHomeBinding
-import com.example.presentation.utils.getGlobalTransactionsAmount
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,20 +38,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.ratesList.observe(this.viewLifecycleOwner, Observer {
-            Log.i("Inf", it.toString())
-        })
         homeViewModel.transactionsList.observe(this.viewLifecycleOwner, Observer {
-            Log.i("Inf2", it.toString())
+            if (it.isNotEmpty()) {
+                homeViewModel.getGlobalTransactions()
+            }
+        })
 
-            var globalTransactions = getGlobalTransactionsAmount(it)
-
-            transactionAdapter = GlobalTransactionsAdapter(globalTransactions)
+        homeViewModel.globalTransactionList.observe(this.viewLifecycleOwner, Observer {
+            Log.i("Hola", "1")
+            transactionAdapter = GlobalTransactionsAdapter(it)
             transactionAdapter.notifyDataSetChanged()
             binding.rvGlobalTransactions.layoutManager = LinearLayoutManager(context)
             binding.rvGlobalTransactions.adapter = transactionAdapter
-
-
         })
     }
+
 }

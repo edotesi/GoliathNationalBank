@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class Rates @Inject constructor(private val rateRepository: RateRepository) {
 
-    fun getRates(): MutableLiveData<ArrayList<RateLocal>> {
+    suspend fun getRates(): MutableLiveData<ArrayList<RateLocal>> {
         return rateRepository.getRates()
     }
 

@@ -11,10 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
 
 class RateRepositoryImpl @Inject constructor(private val ratesService: RatesService) :
     RateRepository {
-    override fun getRates(): MutableLiveData<ArrayList<RateLocal>> {
+    override suspend fun getRates(): MutableLiveData<ArrayList<RateLocal>> {
         var rates = MutableLiveData<ArrayList<RateLocal>>()
         ratesService.getRates().enqueue(object : Callback<ArrayList<RateResponse>> {
             override fun onFailure(call: Call<ArrayList<RateResponse>>, t: Throwable) {

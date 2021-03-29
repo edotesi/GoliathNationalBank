@@ -5,6 +5,6 @@ import com.example.domain.model.RateLocal
 
 interface RateRepository {
 
-    fun getRates(): MutableLiveData<ArrayList<RateLocal>>
+    suspend fun getRates(): MutableLiveData<ArrayList<RateLocal>>
 
 }

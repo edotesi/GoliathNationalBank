@@ -16,7 +16,7 @@ import javax.inject.Inject
 class TransactionRepositoryImpl @Inject constructor(private val transactionService: TransactionService) :
     TransactionRepository {
 
-    override fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>> {
+    override suspend fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>> {
         var transactions = MutableLiveData<ArrayList<TransactionLocal>>()
         transactionService.getTransactions().enqueue(
             object : Callback<ArrayList<TransactionResponse>> {
