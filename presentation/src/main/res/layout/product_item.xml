@@ -8,7 +8,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvGlobalTransaction"
+        android:id="@+id/cvProduct"
         style="@style/product_card_view"
         app:cardCornerRadius="10dp">
 
@@ -18,7 +18,7 @@
             android:layout_margin="10dp">
 
             <TextView
-                android:id="@+id/tvGlobalTransactionName"
+                android:id="@+id/tvProductName"
                 style="@style/tv_24sp_bold_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
@@ -26,29 +26,29 @@
                 tools:text="SD676437" />
 
             <TextView
-                android:id="@+id/tvGlobalTransactionCurrency"
+                android:id="@+id/tvProductCurrency"
                 style="@style/tv_16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvGlobalTransactionName"
+                app:layout_constraintTop_toBottomOf="@id/tvProductName"
                 tools:text="EUR" />
 
 
             <TextView
-                android:id="@+id/tvGlobalTransactionAmount"
+                android:id="@+id/tvProductAmount"
                 style="@style/tv_24sp_bold_green_amount"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tvGlobalTransactionAmountSymbol"
+                app:layout_constraintEnd_toStartOf="@id/tvProductAmountSymbol"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Value" />
 
             <TextView
-                android:id="@+id/tvGlobalTransactionAmountSymbol"
+                android:id="@+id/tvProductAmountSymbol"
                 style="@style/tv_24sp_bold_green_amount"
                 android:paddingLeft="1dp"
-                app:layout_constraintBottom_toBottomOf="@id/tvGlobalTransactionAmount"
+                app:layout_constraintBottom_toBottomOf="@id/tvProductAmount"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvGlobalTransactionAmount"
+                app:layout_constraintTop_toTopOf="@id/tvProductAmount"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="€" />
 

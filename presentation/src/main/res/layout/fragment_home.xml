@@ -58,7 +58,7 @@
             app:lottie_rawRes="@raw/loading_spinner" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvGlobalTransactions"
+            android:id="@+id/rvProducts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutAnimation="@anim/recyclerview_animation_with_alpha"

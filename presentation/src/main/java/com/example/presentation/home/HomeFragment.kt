@@ -42,7 +42,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initViews() {
-        binding.rvGlobalTransactions.layoutManager = LinearLayoutManager(context)
+        binding.rvProducts.layoutManager = LinearLayoutManager(context)
         binding.fabSettings.setOnClickListener(this)
     }
 
@@ -63,7 +63,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun showRecyclerOnInfoReceived() {
         binding.lottieSpinnerWaitRecycler.pauseAnimation()
         binding.lottieSpinnerWaitRecycler.visibility = View.GONE
-        binding.rvGlobalTransactions.visibility = View.VISIBLE
+        binding.rvProducts.visibility = View.VISIBLE
     }
 
     private fun setDataRecyclerView(it: ArrayList<ProductUIModel>) {
@@ -71,7 +71,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             onItemClicked(productUIModel)
         }
         productsAdapter.notifyDataSetChanged()
-        binding.rvGlobalTransactions.adapter = productsAdapter
+        binding.rvProducts.adapter = productsAdapter
     }
 
     private fun onItemClicked(productUIModel: ProductUIModel) {
