@@ -57,4 +57,31 @@
         <item name="android:textColor">@color/green_amount_color</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="tv_16sp_blue" parent="tv_16sp">
+        <item name="android:textColor">@color/blue_gnb_color</item>
+    </style>
+
+    <style name="fabSettings">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foregroundGravity">center</item>
+    </style>
+
+    <style name="product_card_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="transaction_item_card_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:elevation">10dp</item>
+    </style>
 </resources>

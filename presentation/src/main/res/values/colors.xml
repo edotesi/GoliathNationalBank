@@ -2,4 +2,5 @@
 <resources>
     <color name="green_amount_color">#5AB08B</color>
     <color name="blue_gnb_color">#0071BC</color>
+    <color name="background_grey">#FAFAFA</color>
 </resources>

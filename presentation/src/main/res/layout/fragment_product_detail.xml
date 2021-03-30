@@ -10,8 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FAFAFA"
-
+        android:background="@color/background_grey"
         android:orientation="vertical"
         tools:context=".transaction.ProductDetailFragment">
 
@@ -33,19 +32,15 @@
             <TextView
                 android:id="@+id/tvSkuName"
                 style="@style/tv_20sp_bold_black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="3dp"
-                android:text="SKU ID: "
+                android:text="@string/sku_name_product"
                 app:layout_constraintStart_toEndOf="@id/ivGnbLogo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvSkuValue"
                 style="@style/tv_20sp_italic_blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 app:layout_constraintStart_toEndOf="@id/tvSkuName"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,22 +48,17 @@
 
             <TextView
                 android:id="@+id/tvCurrencyName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/tv_16sp"
                 android:layout_marginLeft="5dp"
-                android:text="Currency: "
-                android:textSize="16sp"
+                android:text="@string/currency_name_product"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivGnbLogo"
                 app:layout_constraintTop_toBottomOf="@id/tvSkuName" />
 
             <TextView
                 android:id="@+id/tvCurrencyValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/tv_16sp_blue"
                 android:alpha="0.7"
-                android:textColor="@color/blue_gnb_color"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvCurrencyName"
                 app:layout_constraintTop_toBottomOf="@id/tvSkuValue"
@@ -76,23 +66,15 @@
 
             <TextView
                 android:id="@+id/tvAmountName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Amount: "
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                style="@style/tv_16sp_bold_black"
+                android:text="@string/amount_name_product"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvAmountValue"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvAmountValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/green_amount_color"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                style="@style/tv_16sp_bold_green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -104,8 +86,9 @@
             android:id="@+id/rvTransactions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/transaction_item"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layoutAnimation="@anim/recyclerview_animation_with_alpha"
+            tools:listitem="@layout/transaction_item" />
 
     </LinearLayout>
 </layout>

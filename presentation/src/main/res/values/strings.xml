@@ -1,4 +1,9 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="products_title">Products</string>
+    <string name="sku_name_product">SKU ID: </string>
+    <string name="currency_name_product">Currency: </string>
+    <string name="amount_name_product">Amount: </string>
+    <string name="amount_name_transaction">Amount: </string>
+    <string name="currency_name_transaction">Currency: </string>
 </resources>

@@ -8,13 +8,9 @@
     </data>
 
     <androidx.cardview.widget.CardView
-
         android:id="@+id/cvGlobalTransaction"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp">
+        style="@style/product_card_view"
+        app:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,43 +19,33 @@
 
             <TextView
                 android:id="@+id/tvGlobalTransactionName"
-                app:layout_constraintTop_toTopOf="parent"
+                style="@style/tv_24sp_bold_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
-                tools:text="SD676437"
-                style="@style/tv_24sp_bold_black" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="SD676437" />
 
             <TextView
                 android:id="@+id/tvGlobalTransactionCurrency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/tv_16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvGlobalTransactionName"
-                android:textSize="16sp"
                 tools:text="EUR" />
 
 
             <TextView
                 android:id="@+id/tvGlobalTransactionAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/tv_24sp_bold_green_amount"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tvGlobalTransactionAmountSymbol"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/green_amount_color"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Value" />
 
             <TextView
-                android:paddingLeft="1dp"
                 android:id="@+id/tvGlobalTransactionAmountSymbol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#5AB08B"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                style="@style/tv_24sp_bold_green_amount"
+                android:paddingLeft="1dp"
                 app:layout_constraintBottom_toBottomOf="@id/tvGlobalTransactionAmount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvGlobalTransactionAmount"

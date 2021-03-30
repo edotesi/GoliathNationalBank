@@ -9,11 +9,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvTransaction"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="5dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        style="@style/transaction_item_card_view">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,7 +20,7 @@
             <TextView
                 android:id="@+id/tvTransactionAmountName"
                 style="@style/tv_16sp_bold_black"
-                android:text="Amount: "
+                android:text="@string/amount_name_transaction"
                 android:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +29,6 @@
             <TextView
                 android:id="@+id/tvTransactionAmountValue"
                 style="@style/tv_16sp_bold_green"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvTransactionAmountName"
                 app:layout_constraintTop_toTopOf="parent"
@@ -41,9 +36,7 @@
 
             <TextView
                 android:id="@+id/tvTransactionCurrencyName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Currency: "
+                android:text="@string/currency_name_transaction"
                 style="@style/tv_16sp_bold_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvTransactionCurrencyValue"
@@ -52,8 +45,6 @@
             <TextView
                 android:id="@+id/tvTransactionCurrencyValue"
                 style="@style/tv_16sp_bold_green"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

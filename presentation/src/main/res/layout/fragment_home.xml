@@ -1,39 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
     </data>
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_grey"
         android:orientation="vertical"
-        tools:context=".home.HomeFragment"
-        android:background="#FAFAFA">
+        tools:context=".home.HomeFragment">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSettings"
+            style="@style/fabSettings"
+            app:backgroundTint="@android:color/white"
+            app:fabCustomSize="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_settings" />
 
         <ImageView
+            android:id="@+id/ivGnbHeader"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:src="@drawable/ic_gnb_logo"
+            android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:layout_gravity="center"/>
+            android:src="@drawable/ic_gnb_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvGlobalTransactionsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="Products"
-            android:layout_marginBottom="5dp"
+            android:id="@+id/tvProductsTitle"
+            style="@style/tv_24sp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/products_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivGnbHeader" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieSpinnerWaitRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductsTitle"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_spinner" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGlobalTransactions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/product_item"/>
+            android:layoutAnimation="@anim/recyclerview_animation_with_alpha"
+            android:visibility="gone"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductsTitle"
+            tools:listitem="@layout/product_item" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

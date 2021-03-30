@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.data.model.TransactionResponse
 import com.example.data.model.mapper.transactionResponseToTransactionLocal
 import com.example.data.service.TransactionService
-import com.example.domain.model.RateLocal
 import com.example.domain.model.TransactionLocal
 import com.example.domain.repository.TransactionRepository
 import retrofit2.Call
@@ -42,5 +41,4 @@ class TransactionRepositoryImpl @Inject constructor(private val transactionServi
         )
         return transactions
     }
-
 }

@@ -1,6 +1,5 @@
 package com.example.presentation.model
 
-import com.example.domain.model.TransactionLocal
 import java.io.Serializable
 import java.util.*
 

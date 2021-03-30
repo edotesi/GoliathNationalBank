@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.presentation.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
@@ -17,8 +17,17 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.presentation.transaction.ProductDetailFragment"
-        android:label="ProductDetailFragment" >
-        <argument android:name="productDetail"
+        android:label="ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productDetail"
             app:argType="com.example.presentation.model.ProductUIModel" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.presentation.settings.SettingsFragment"
+        android:label="SettinsFragment" />
+    <action
+        android:id="@+id/action_open_settings_fragment"
+        app:destination="@id/settingsFragment" />
 </navigation>

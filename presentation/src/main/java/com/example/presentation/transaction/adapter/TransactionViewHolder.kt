@@ -1,4 +1,4 @@
-package com.example.presentation.adapter.holder
+package com.example.presentation.transaction.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.databinding.TransactionItemBinding
