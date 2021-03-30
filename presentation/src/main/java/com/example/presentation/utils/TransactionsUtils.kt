@@ -3,16 +3,16 @@ package com.example.presentation.utils
 import android.util.Log
 import com.example.domain.model.RateLocal
 import com.example.domain.model.TransactionLocal
-import com.example.presentation.model.GlobalTransactionUIModel
-import com.example.presentation.model.mapper.transactionLocalToTransactionUI
+import com.example.presentation.model.ProductUIModel
+import com.example.presentation.model.mapper.transactionsLocalToTransactionsUI
 import java.math.BigDecimal
 
 
 fun getGlobalTransactionsAmount(
     transactions: ArrayList<TransactionLocal>,
     rates: ArrayList<RateLocal>
-): ArrayList<GlobalTransactionUIModel> {
-    val transactionsAmountList: ArrayList<GlobalTransactionUIModel> = ArrayList()
+): ArrayList<ProductUIModel> {
+    val transactionsAmountList: ArrayList<ProductUIModel> = ArrayList()
     var transactionsBySku: Map<String, List<TransactionLocal>> =
         transactions.groupBy(TransactionLocal::sku)
     transactionsBySku.entries.forEach { transactions ->
@@ -32,18 +32,20 @@ fun getGlobalTransactionsBySku(
     transactions: List<TransactionLocal>,
     transactionName: String,
     rates: ArrayList<RateLocal>
-): GlobalTransactionUIModel {
-    var globalTransaction: GlobalTransactionUIModel =
-        GlobalTransactionUIModel(transactionName, "", "EUR", null)
+): ProductUIModel {
     var amount = BigDecimal.ZERO
     transactions.forEach { transaction ->
-        globalTransaction.transactions?.add(
-            transactionLocalToTransactionUI(transaction)
-        )
-        amount += currencyConverter(rates, transaction, "EUR")
-        Log.i("Amount", amount.setScale(2, BigDecimal.ROUND_HALF_EVEN).toPlainString())
+        amount = amount.add(currencyConverter(rates, transaction, "EUR"))
     }
-    return globalTransaction
+    amount = amount.setScale(2, BigDecimal.ROUND_HALF_EVEN)
+
+    Log.i("Prueba", amount.toString())
+    return ProductUIModel(
+        transactionName,
+        amount.toString(),
+        "EUR",
+        transactionsLocalToTransactionsUI(transactions as ArrayList<TransactionLocal>)
+    )
 }
 
 fun currencyConverter(
@@ -54,19 +56,18 @@ fun currencyConverter(
     var currentAmount = BigDecimal.ZERO
     var auxAmount = 1.toBigDecimal()
     var actualCurrency: String = transaction.currency
-    var lastCurrency: String = ""
     var conversionFinished = false
     var inversionRate: RateLocal = RateLocal("", "", "")
     var auxRatesList: ArrayList<RateLocal> = ArrayList()
-
+    var lastCurrency: String = ""
     auxRatesList.addAll(rates)
 
-    if(userCurrency == transaction.currency){
+    if (userCurrency == transaction.currency) {
         currentAmount = currentAmount.add(transaction.amount.toBigDecimal())
     } else {
         do {
-            for(rate in auxRatesList.toList()) {
-                if (actualCurrency == rate.from && rate.to != lastCurrency && !conversionFinished)  {
+            for (rate in auxRatesList.toList()) {
+                if (actualCurrency == rate.from && !conversionFinished)  {
                     actualCurrency = rate.to
                     lastCurrency = rate.from
                     currentAmount = if (currentAmount.compareTo(BigDecimal.ZERO) == 0) {
@@ -75,16 +76,15 @@ fun currencyConverter(
                     } else {
                         currentAmount.multiply(rate.rate.toBigDecimal())
                     }
-                    if (userCurrency == rate.to && rate.from == lastCurrency) {
+                    if (userCurrency == rate.to) {
                         conversionFinished = true
                     }
                     auxRatesList.forEach { rateInversion ->
-                        if(rateInversion.from == rate.to && rateInversion.to == rate.from){
+                        if (rateInversion.from == rate.to && rateInversion.to == rate.from) {
                             inversionRate = rateInversion
                         }
                     }
-                    auxRatesList.remove(rate)
-                    auxRatesList.remove(inversionRate)
+                    //auxRatesList.remove(rate)
                 }
             }
         } while (!conversionFinished)

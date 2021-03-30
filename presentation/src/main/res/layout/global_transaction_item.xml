@@ -46,15 +46,15 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tvGlobalTransactionAmountName"
+                app:layout_constraintEnd_toStartOf="@id/tvGlobalTransactionAmountSymbol"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="@color/amount_color"
+                android:textColor="@color/green_amount_color"
                 tools:text="Value" />
 
             <TextView
                 android:paddingLeft="1dp"
-                android:id="@+id/tvGlobalTransactionAmountName"
+                android:id="@+id/tvGlobalTransactionAmountSymbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#5AB08B"
