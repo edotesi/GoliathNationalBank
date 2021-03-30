@@ -66,7 +66,7 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideTransacionService(@RetrofitClient retrofit: Retrofit): TransactionService = retrofit.create(TransactionService::class.java)
+    fun provideTransactionService(@RetrofitClient retrofit: Retrofit): TransactionService = retrofit.create(TransactionService::class.java)
 
     @Provides
     @Singleton

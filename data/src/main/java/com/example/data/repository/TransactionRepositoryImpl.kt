@@ -16,12 +16,16 @@ import javax.inject.Inject
 class TransactionRepositoryImpl @Inject constructor(private val transactionService: TransactionService) :
     TransactionRepository {
 
+    /**
+     * Async method used for get transactions from service using a call with Retrofit instance.
+     * @return MutableLiveData<ArrayList<TransactionLocal>> with all the transactions for use it on viewModel
+     */
     override suspend fun getTransactions(): MutableLiveData<ArrayList<TransactionLocal>> {
         var transactions = MutableLiveData<ArrayList<TransactionLocal>>()
         transactionService.getTransactions().enqueue(
             object : Callback<ArrayList<TransactionResponse>> {
                 override fun onFailure(call: Call<ArrayList<TransactionResponse>>, t: Throwable) {
-                    Log.i("Error", t.message.toString())
+                    Log.i("Error on getTransactions", t.message.toString())
                 }
 
                 override fun onResponse(

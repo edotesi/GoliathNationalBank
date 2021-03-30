@@ -18,6 +18,7 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.presentation.transaction.ProductDetailFragment"
         android:label="ProductDetailFragment" >
-        <argument android:name="productDetail" />
+        <argument android:name="productDetail"
+            app:argType="com.example.presentation.model.ProductUIModel" />
     </fragment>
 </navigation>

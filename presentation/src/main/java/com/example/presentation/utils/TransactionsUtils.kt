@@ -7,8 +7,12 @@ import com.example.presentation.model.ProductUIModel
 import com.example.presentation.model.mapper.transactionsLocalToTransactionsUI
 import java.math.BigDecimal
 
-
-fun getGlobalTransactionsAmount(
+/**
+ * Method used for get all the transactions grouped by sku.
+ * @return ArrayList<ProductUIModel> where every product has the currency, sku name, a List of every
+ * transaction with it sku and the amount.
+ */
+fun getProductsList(
     transactions: ArrayList<TransactionLocal>,
     rates: ArrayList<RateLocal>
 ): ArrayList<ProductUIModel> {
@@ -17,7 +21,7 @@ fun getGlobalTransactionsAmount(
         transactions.groupBy(TransactionLocal::sku)
     transactionsBySku.entries.forEach { transactions ->
         transactionsAmountList.add(
-            getGlobalTransactionsBySku(
+            getProductDetails(
                 transactions.value,
                 transactions.key,
                 rates
@@ -27,19 +31,23 @@ fun getGlobalTransactionsAmount(
     return transactionsAmountList
 }
 
-
-fun getGlobalTransactionsBySku(
+/**
+ * Method used for get amount of the product and transform transactions to UIModel for use it later
+ * on RecyclerView.
+ * @return ProductUIModel with all it data(Name, currency, amount, list of transactions)
+ */
+fun getProductDetails(
     transactions: List<TransactionLocal>,
     transactionName: String,
     rates: ArrayList<RateLocal>
 ): ProductUIModel {
     var amount = BigDecimal.ZERO
+
     transactions.forEach { transaction ->
         amount = amount.add(currencyConverter(rates, transaction, "EUR"))
     }
     amount = amount.setScale(2, BigDecimal.ROUND_HALF_EVEN)
 
-    Log.i("Prueba", amount.toString())
     return ProductUIModel(
         transactionName,
         amount.toString(),
@@ -48,6 +56,12 @@ fun getGlobalTransactionsBySku(
     )
 }
 
+/**
+ * Method used for convert one currency amount to the user currency.
+ * Get the current transaction of the product and make the conversion from it currency to the
+ * user currency.
+ * @return BigDecimal as value of the currency conversion.
+ */
 fun currencyConverter(
     rates: ArrayList<RateLocal>,
     transaction: TransactionLocal,
@@ -57,9 +71,7 @@ fun currencyConverter(
     var auxAmount = 1.toBigDecimal()
     var actualCurrency: String = transaction.currency
     var conversionFinished = false
-    var inversionRate: RateLocal = RateLocal("", "", "")
     var auxRatesList: ArrayList<RateLocal> = ArrayList()
-    var lastCurrency: String = ""
     auxRatesList.addAll(rates)
 
     if (userCurrency == transaction.currency) {
@@ -67,9 +79,8 @@ fun currencyConverter(
     } else {
         do {
             for (rate in auxRatesList.toList()) {
-                if (actualCurrency == rate.from && !conversionFinished)  {
+                if (actualCurrency == rate.from && !conversionFinished) {
                     actualCurrency = rate.to
-                    lastCurrency = rate.from
                     currentAmount = if (currentAmount.compareTo(BigDecimal.ZERO) == 0) {
                         auxAmount.multiply(rate.rate.toBigDecimal())
                             .multiply(transaction.amount.toBigDecimal())
@@ -78,11 +89,6 @@ fun currencyConverter(
                     }
                     if (userCurrency == rate.to) {
                         conversionFinished = true
-                    }
-                    auxRatesList.forEach { rateInversion ->
-                        if (rateInversion.from == rate.to && rateInversion.to == rate.from) {
-                            inversionRate = rateInversion
-                        }
                     }
                     //auxRatesList.remove(rate)
                 }

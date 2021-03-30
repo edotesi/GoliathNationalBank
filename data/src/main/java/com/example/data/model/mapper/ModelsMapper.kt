@@ -5,6 +5,10 @@ import com.example.data.model.TransactionResponse
 import com.example.domain.model.RateLocal
 import com.example.domain.model.TransactionLocal
 
+/**
+ * Method used for convert the rate response to rate local model.
+ * @return ArrayList<RateLocal> with all the rates converted to local model.
+ */
 fun rateResponseToRateLocal(rateResponseList: ArrayList<RateResponse>): ArrayList<RateLocal> {
     var rateLocalList = ArrayList<RateLocal>()
 
@@ -14,6 +18,10 @@ fun rateResponseToRateLocal(rateResponseList: ArrayList<RateResponse>): ArrayLis
     return rateLocalList
 }
 
+/**
+ * Method used for convert the transactions response to transaction local model.
+ * @return ArrayList<RateLocal> with all the transactions converted to transaction model.
+ */
 fun transactionResponseToTransactionLocal(transactionResponseList: ArrayList<TransactionResponse>): ArrayList<TransactionLocal> {
     var transactionLocalList = ArrayList<TransactionLocal>()
 

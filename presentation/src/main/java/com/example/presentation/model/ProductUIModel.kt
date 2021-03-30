@@ -1,6 +1,7 @@
 package com.example.presentation.model
 
 import com.example.domain.model.TransactionLocal
+import java.io.Serializable
 import java.util.*
 
 data class ProductUIModel(
@@ -8,4 +9,4 @@ data class ProductUIModel(
     var amount: String,
     var currency: String,
     var transactions: ArrayList<TransactionUIModel>
-)
+) : Serializable

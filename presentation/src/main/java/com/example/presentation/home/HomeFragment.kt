@@ -8,26 +8,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.presentation.R
 import com.example.presentation.adapter.ProductAdapter
 import com.example.presentation.databinding.FragmentHomeBinding
 import com.example.presentation.model.ProductUIModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var transactionAdapter: ProductAdapter
+    private lateinit var productsAdapter: ProductAdapter
     private val homeViewModel: HomeViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -40,25 +38,38 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+        initViewModel()
+    }
 
+    private fun initViews() {
+        binding.rvGlobalTransactions.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun initViewModel() {
         homeViewModel.transactionsList.observe(this.viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
-                homeViewModel.getGlobalTransactions()
+                homeViewModel.getProducts()
             }
         })
 
         homeViewModel.productList.observe(this.viewLifecycleOwner, Observer {
-            transactionAdapter = ProductAdapter(it) {
-                productUIModel: ProductUIModel -> onItemClicked(productUIModel)
-            }
-            transactionAdapter.notifyDataSetChanged()
-            binding.rvGlobalTransactions.layoutManager = LinearLayoutManager(context)
-            binding.rvGlobalTransactions.adapter = transactionAdapter
+            setDataRecyclerView(it)
         })
     }
 
+    private fun setDataRecyclerView(it: ArrayList<ProductUIModel>) {
+        productsAdapter = ProductAdapter(it) { productUIModel: ProductUIModel ->
+            onItemClicked(productUIModel)
+        }
+        productsAdapter.notifyDataSetChanged()
+        binding.rvGlobalTransactions.adapter = productsAdapter
+    }
+
     private fun onItemClicked(productUIModel: ProductUIModel) {
-        homeViewModel.goToProductDetail(productUIModel)
+        var bundle: Bundle = Bundle()
+        bundle.putSerializable("product", productUIModel)
+        findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
     }
 
 }

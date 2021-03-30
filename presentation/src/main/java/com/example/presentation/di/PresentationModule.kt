@@ -1,7 +1,9 @@
 package com.example.presentation.di
 
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.domain.repository.RateRepository
 import com.example.domain.repository.TransactionRepository
 import com.example.domain.usecase.Rates
@@ -13,6 +15,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -28,4 +31,5 @@ object PresentationModule {
     @Provides
     fun getTransactionsProvider(transactionRepository: TransactionRepository) =
         Transactions(transactionRepository)
+
 }

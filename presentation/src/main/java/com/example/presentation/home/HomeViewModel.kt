@@ -4,16 +4,13 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import com.example.domain.model.RateLocal
 import com.example.domain.model.TransactionLocal
 import com.example.domain.usecase.Rates
 import com.example.domain.usecase.Transactions
 import com.example.presentation.model.ProductUIModel
-import com.example.presentation.utils.getGlobalTransactionsAmount
+import com.example.presentation.utils.getProductsList
 import kotlinx.coroutines.launch
-import java.security.PrivateKey
 
 class HomeViewModel @ViewModelInject constructor(
     private val rates: Rates,
@@ -43,12 +40,11 @@ class HomeViewModel @ViewModelInject constructor(
         transactionsList = transactions.getTransactions()
     }
 
-    fun getGlobalTransactions() {
+    fun getProducts() {
         ratesList.value?.let { rates ->
             transactionsList.value?.let { transactions ->
-
                 productList.postValue(
-                    getGlobalTransactionsAmount(
+                    getProductsList(
                         transactions,
                         rates
                     )
@@ -56,9 +52,4 @@ class HomeViewModel @ViewModelInject constructor(
             }
         }
     }
-
-    fun goToProductDetail(productUIModel: ProductUIModel){
-
-    }
-
 }

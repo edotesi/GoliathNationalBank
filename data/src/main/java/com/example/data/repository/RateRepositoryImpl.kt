@@ -15,11 +15,16 @@ import kotlin.coroutines.coroutineContext
 
 class RateRepositoryImpl @Inject constructor(private val ratesService: RatesService) :
     RateRepository {
+
+    /**
+     * Async method used for get rates from service using a call with Retrofit instance.
+     * @return MutableLiveData<ArrayList<RateLocal>> with all the rates for use it on viewModel
+     */
     override suspend fun getRates(): MutableLiveData<ArrayList<RateLocal>> {
         var rates = MutableLiveData<ArrayList<RateLocal>>()
         ratesService.getRates().enqueue(object : Callback<ArrayList<RateResponse>> {
             override fun onFailure(call: Call<ArrayList<RateResponse>>, t: Throwable) {
-                Log.i("Error", t.message.toString())
+                Log.i("Error on getRates", t.message.toString())
             }
 
             override fun onResponse(
