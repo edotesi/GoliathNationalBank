@@ -3,10 +3,6 @@
     package="com.example.presentation" >
 
     <application android:theme="@style/AppTheme" >
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
         <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
