@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface RatesService {
 
-    @GET("rates.json")
+    @GET("rates")
     fun getRates(): Call<ArrayList<RateResponse>>
 
 }

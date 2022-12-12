@@ -21,8 +21,7 @@ object PresentationModule {
         rates: Rates,
         transactions: Transactions,
         sharedPreferences: SharedPreferences
-    ) =
-        HomeViewModel(rates, transactions, sharedPreferences)
+    ) = HomeViewModel(rates, transactions, sharedPreferences)
 
     @Provides
     fun getRatesProvider(ratesRepository: RateRepository) = Rates(ratesRepository)
